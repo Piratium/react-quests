@@ -1,11 +1,11 @@
 import React from 'react';
 
-const value = "Карточки";
-
-const HeaderItem = () => {
+const HeaderItem = (props) => {
     return (
         <div>
-            <h1 className='text-center mb-5'>{value}</h1>
+            <h1 className='text-center mb-5'>
+                {props.headerText}
+            </h1>
         </div>
     );
 }

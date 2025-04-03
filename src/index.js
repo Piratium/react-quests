@@ -5,8 +5,7 @@ import HomePage from './Layout/HomePage/HomePage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const value = "Карточки";
-const now = new Date();
+
 
 root.render(
   <div className='container col-10'>
