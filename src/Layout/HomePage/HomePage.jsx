@@ -11,30 +11,19 @@ const HomePage = () => {
     const value = "Карточки";
 
     const [labels, setLabels] = useState([
-        { id: 1, cardTitle:"Заголовок 1", cardText: "Описание 1" },
-        { id: 2, cardTitle:"Заголовок 2", cardText: "Описание 2" },
-        { id: 3, cardTitle:"Заголовок 3", cardText: "Описание 3" },
-        { id: 4, cardTitle:"Заголовок 4", cardText: "Описание 4" },
+        { id: 1, title:"Заголовок 1", body: "Описание 1" },
+        { id: 2, title:"Заголовок 2", body: "Описание 2" },
+        { id: 3, title:"Заголовок 3", body: "Описание 3" },
+        { id: 4, title:"Заголовок 4", body: "Описание 4" },
     ]);
 
     useEffect(() => {
-        axios.get(baseUrl).then(res => {
-                const temp = [];
-                res.data.slice(0, 5).forEach(
-                    item => {
-                        temp.push(
-                            {
-                                id: item.id,
-                                cardTitle: item.title,
-                                cardText: item.body,
-                            }
-                        )
-                    }
-                );
-                setLabels(temp)
-            });
-            
-    },[])
+        axios
+            .get(baseUrl)
+            .then(res => {
+                setLabels(res.data.slice(0, 5));
+            }); 
+    },[]);
 
     return (
         <div className='container col-10'>
@@ -47,7 +36,7 @@ const HomePage = () => {
             <div className='text-center m-5'>
                 <button className='btn btn-primary' 
                     onClick={() => {
-                        setLabels([...labels, { id: 1, cardTitle:"Заголовок 1", cardText: "Описание 1" },]);
+                        setLabels([...labels, { id: labels.length+1, title:`Заголовок ${labels.length+1}`, body: `Описание ${labels.length+1}` },]);
                     }
                 }>
                     Добавить карточку
